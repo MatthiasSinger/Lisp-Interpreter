@@ -7,11 +7,7 @@ public class Lexer {
     public List<Token> lex(String source) {
         List<Token> tokens = new ArrayList<>();
         for (String symbol : splitIntoSymbols(source)) {
-            Token token = getToken(symbol);
-            if (token.getType() == TokenType.Failure) {
-                throw new RuntimeException("Ungültiges Symbol: " + token.getLexeme());
-            }
-            tokens.add(token);
+            tokens.add(getToken(symbol));
         }
         return tokens;
     }
@@ -62,7 +58,7 @@ public class Lexer {
         } else if (symbol.matches("[+\\-/*]")) {
             return new Token(TokenType.Op, symbol);
         } else {
-            return new Token(TokenType.Failure, symbol);
+            throw new RuntimeException("Ungültiges Symbol: " + symbol);
         }
     }
 }

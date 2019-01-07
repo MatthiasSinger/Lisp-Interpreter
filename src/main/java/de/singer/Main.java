@@ -11,9 +11,13 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
         List<String> lines = Files.readAllLines(Paths.get(args[args.length - 1]));
-        String source = String.join("", lines).replaceAll("\\s+", " ");
+        Reader reader = new Reader();
+        List<String> expressions = reader.read(lines);
         Lexer lexer = new Lexer();
-        List<Token> tokens = lexer.lex(source);
-        System.out.println(tokens);
+
+        for (String exp : expressions) {
+            List<Token> lex = lexer.lex(exp);
+
+        }
     }
 }
