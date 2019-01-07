@@ -1,3 +1,5 @@
+package de.singer;
+
 import de.singer.lexing.Token;
 import de.singer.lexing.TokenType;
 

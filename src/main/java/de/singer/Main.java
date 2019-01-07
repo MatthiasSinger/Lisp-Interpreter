@@ -1,7 +1,10 @@
 package de.singer;
 
+import de.singer.evaluating.Evaluator;
 import de.singer.lexing.Lexer;
 import de.singer.lexing.Token;
+import de.singer.parsing.Node;
+import de.singer.parsing.Parser;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,14 +13,18 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        List<String> lines = Files.readAllLines(Paths.get(args[args.length - 1]));
         Reader reader = new Reader();
-        List<String> expressions = reader.read(lines);
         Lexer lexer = new Lexer();
+        Parser parser = new Parser();
+        Evaluator evaluator = new Evaluator();
+
+        List<String> lines = Files.readAllLines(Paths.get(args[0]));
+        List<String> expressions = reader.read(lines);
 
         for (String exp : expressions) {
-            List<Token> lex = lexer.lex(exp);
-
+            List<Token> tokens = lexer.lex(exp);
+            Node root = parser.parse(tokens);
+            evaluator.eval(root);
         }
     }
 }

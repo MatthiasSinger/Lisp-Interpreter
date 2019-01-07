@@ -53,10 +53,8 @@ public class Lexer {
             return new Token(TokenType.Number, symbol);
         } else if (symbol.matches("\".*\"")) {
             return new Token(TokenType.Str, symbol);
-        } else if (symbol.matches("[a-zA-Z_][a-zA-Z_\\d]*")) {
+        } else if (symbol.matches("[a-zA-Z_][a-zA-Z_\\d]*|^[+\\-/*]$")) {
             return new Token(TokenType.Id, symbol);
-        } else if (symbol.matches("[+\\-/*]")) {
-            return new Token(TokenType.Op, symbol);
         } else {
             throw new RuntimeException("Ungültiges Symbol: " + symbol);
         }
