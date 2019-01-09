@@ -17,13 +17,16 @@ public class Main {
         Lexer lexer = new Lexer();
         Parser parser = new Parser();
         Evaluator evaluator = new Evaluator();
+        SymbolTable.init();
 
         List<String> lines = Files.readAllLines(Paths.get(args[0]));
         List<String> expressions = reader.read(lines);
 
         for (String exp : expressions) {
             List<Token> tokens = lexer.lex(exp);
+            System.out.println(tokens);
             Node root = parser.parse(tokens);
+            System.out.println(root);
             evaluator.eval(root);
         }
     }

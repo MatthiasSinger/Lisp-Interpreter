@@ -1,15 +1,20 @@
 package de.singer;
 
-import de.singer.lexing.Token;
-import de.singer.lexing.TokenType;
+import de.singer.evaluating.Function;
+import de.singer.evaluating.Functions;
+import de.singer.parsing.Node;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SymbolTable {
-    public static Map<String, Token> symbolTable = new HashMap<>();
+    public static Map<String, Node> symbolTable = new HashMap<>();
 
     public static void init() {
-        symbolTable.put("PI", new Token(TokenType.Number, "10"));
+        symbolTable.put("first", new Node<Function>(Functions::first, true));
+        symbolTable.put("+", new Node<Function>(Functions::add, true));
+        symbolTable.put("-", new Node<Function>(Functions::minus, true));
+        symbolTable.put("*", new Node<Function>(Functions::multiply, true));
+        symbolTable.put("/", new Node<Function>(Functions::divide, true));
     }
 }

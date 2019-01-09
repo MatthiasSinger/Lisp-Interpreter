@@ -9,11 +9,11 @@ public class Token {
         this.lexeme = lexeme;
     }
 
-    TokenType getType() {
+    public TokenType getType() {
         return type;
     }
 
-    String getLexeme() {
+    public String getLexeme() {
         return lexeme;
     }
 

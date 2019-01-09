@@ -19,4 +19,5 @@ public class ReaderTest {
         List<String> read = reader.read(lines);
         assertEquals(2, read.size());
     }
+
 }
