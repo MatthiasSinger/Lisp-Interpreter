@@ -28,6 +28,10 @@ public class Node<T> {
         return children;
     }
 
+    public boolean isLiteral() {
+        return isLiteral;
+    }
+
     public void addNode(Node node) {
         children.add(node);
     }
@@ -37,6 +41,7 @@ public class Node<T> {
         return "Node{" +
                 "value= " + value +
                 ", children=" + children +
+                ", isLiteral=" + isLiteral +
                 '}';
     }
 }

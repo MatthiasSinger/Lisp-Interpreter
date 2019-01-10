@@ -24,10 +24,9 @@ public class Main {
 
         for (String exp : expressions) {
             List<Token> tokens = lexer.lex(exp);
-            System.out.println(tokens);
             Node root = parser.parse(tokens);
-            System.out.println(root);
-            evaluator.eval(root);
+            Node eval = evaluator.eval(root);
+            System.out.println(eval);
         }
     }
 }

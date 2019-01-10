@@ -2,6 +2,7 @@ package de.singer.evaluating;
 
 import de.singer.parsing.Node;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Functions {
@@ -9,6 +10,14 @@ public class Functions {
         if (arguments.size() != 1 || !(arguments.get(0).getValue() instanceof List))
             throw new RuntimeException("Funktion first erwartet einen Paramter vom Typ Liste");
         return ((List<Node>) arguments.get(0).getValue()).get(0);
+    }
+
+    public static Node list(List<Node> arguments) {
+        List<Node> result = new ArrayList<>();
+        for (Node node : arguments) {
+            result.add(node);
+        }
+        return new Node<List>(result, true);
     }
 
     public static Node add(List<Node> list) {
@@ -28,7 +37,7 @@ public class Functions {
             throw new RuntimeException("Keine Argumente angegeben");
         if (list.stream().anyMatch(element -> !(element.getValue() instanceof Double)))
             throw new RuntimeException("Multiplikation nur für Zahlen erlaubt");
-        double result = 0.0;
+        double result = 1.0;
         for (Node node : list) {
             result *= (double) node.getValue();
         }

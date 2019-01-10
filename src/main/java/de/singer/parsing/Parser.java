@@ -70,7 +70,7 @@ public class Parser {
             }
         } else if (g == 'A') {
             if (c == '(') {
-                return List.of('(', 'A', ')');
+                return List.of('(', 'A', ')', 'B');
             } else if (c == 'a') {
                 return List.of('a', 'B');
             }
@@ -81,7 +81,7 @@ public class Parser {
                 return Collections.emptyList();
             }
         }
-        throw new RuntimeException("Ungueltige Syntax!");
+        throw new RuntimeException("Ungueltige Syntax bei " + c + " und " + g);
     }
 
 
